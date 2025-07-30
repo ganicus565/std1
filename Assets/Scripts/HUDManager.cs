@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    public Text scoreTxt;
+    public GameObject Startpanel;
     int score=100;
     public void OnClickPlayBtn()
     {
-        score++;
-        scoreTxt.text = score.ToString();
+        Startpanel.SetActive(false);
+     //   score++;
+     //   scoreTxt.text = score.ToString();
         Debug.Log("Starting game");
     }
 
