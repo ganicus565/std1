@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     public int[] array = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     int win = 0;
     public GameObject over;
+    public GameObject Tie;
+    public GameObject Player1;
+    public GameObject Player2;
 
     void Start()
     {
@@ -124,7 +128,26 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("won " + win);
-        if (win == 1 || win == 2)
+        if (win == 1 || win == 2|| clickCount == 9)
+        {
             over.SetActive(true);
+            End();
+        }
+    }
+    void End()
+    {
+        if(win==1)
+        {
+            Player1.SetActive(true);
+        }
+
+       if(win==2)
+        {
+            Player2.SetActive(true);
+        }
+       if(clickCount==9&&win==0)
+        {
+            Tie.SetActive(true);
+        }
     }
 }
