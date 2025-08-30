@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class QuestionDB : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Toggle A;
+    public Toggle B;
+    public Toggle C;
+    public Toggle D;
 
-    // Update is called once per frame
-    void Update()
+    public void OnAnswerSelected()
     {
-        
+        if(D.isOn==true)
+        {
+            Debug.Log("correct");
+        }
+        else
+        {
+            Debug.Log("Wrong");
+
+        }
     }
 }
