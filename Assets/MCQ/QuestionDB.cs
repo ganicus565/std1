@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 public class QuestionDB : MonoBehaviour
 {
     [SerializeField]
     public Question[] questions;
     public TMP_Text  questionLvl;
+    public int correct;
+    public GameObject Lastpanel;
+    public TMP_Text Result;
+
 
     [SerializeField]
     public Text[] optLvl;
@@ -24,16 +29,20 @@ public class QuestionDB : MonoBehaviour
         Debug.Log("Selected  Ans " + optNo);
         if (AnsRedio[optNo].isOn== true)
             questions[currQus].sectAns = optNo;
+    
+
     }
 
     public void SetNewQuestion(int qNo)
     {
+         
         questionLvl.text = questions[qNo].question;
         for (int i = 0; i < questions[qNo].opts.Length; i++)
         {
             optLvl[i].text = questions[qNo].opts[i];
             if (i == questions[qNo].sectAns)
                 AnsRedio[i].isOn = true;
+
             else
                 AnsRedio[i].isOn = false;
 
@@ -54,6 +63,19 @@ public class QuestionDB : MonoBehaviour
         currQus--;
         SetNewQuestion(currQus);
     }
+    public void Hero()
+    {
+        int Correctcount = 0;
+        for (int i = 0; i < questions.Length; i++)
+        {
+            if (questions[i].ans == questions[i].sectAns)
+                Correctcount++;
+        }
+        Debug.Log(Correctcount + "/" + questions.Length);
+        Lastpanel.SetActive(true);
+
+        Result.text = Correctcount.ToString(); 
+    }
 }
 
 [System.Serializable]
@@ -63,5 +85,6 @@ public class Question
     public string[] opts;
     public int ans;
     public int sectAns;
-
+    
 }
+
